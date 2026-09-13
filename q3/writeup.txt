@@ -1,0 +1,21 @@
+A deadlock happens when two or more processes get stuck in a classic standoff,
+where every process holds a resource that someone else needs while waiting for a resource
+that someone else holds. Think of two people trying to cross a narrow bridge from
+opposite sides: both step onto their half of the bridge, neither is willing to back up,
+and so both end up trapped forever. In computing, this deadlock loop is known as a circular wait.
+For a deadlock to happen, you must have this cycle where Process A waits for Process B,
+Process B waits for Process C, and Process C waits back on Process A.
+
+Hierarchical resource ordering prevents this problem by completely outlawing the possibility of a loop.
+Under this rule, every resource in the system is assigned a strict, fixed rank or priority number. 
+Every process, regardless of what task it is performing, must acquire resources in increasing order of 
+these numbers. For instance, if Lock 1 is assigned rank one and Lock 2 is assigned rank two, any process 
+that needs both locks must always grab Lock 1 before it even attempts to grab Lock 2.
+
+Because every single process follows the exact same ordering rule, no process can ever 
+hold a higher-numbered resource while waiting for a lower-numbered one. 
+If Process A already holds Lock 1, Process B will not be able to snatch Lock 2 and then demand 
+Lock 1—it is forced to wait for Lock 1 first before it can even ask for Lock 2. Since everyone 
+moves in the same direction along the line, it becomes mathematically impossible to close the 
+loop and form a cycle. By eliminating the circular wait condition entirely, the system guarantees 
+that deadlocks can never occur.
